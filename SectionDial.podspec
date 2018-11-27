@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'SectionDial'
   s.version          = '0.1.0'
-  s.summary          = 'Customizable dial view for iOS. '
+  s.summary          = 'Customizable dial view for iOS.'
   s.swift_version    =  '4.2'
 
 # This description is used to generate tags and improve search results.
@@ -26,7 +26,7 @@ Customizable dial view for iOS. A view allows to show data with dial view. Suppo
   s.homepage         = 'https://github.com/sergVn/SectionDial'
   # s.screenshots    = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Serhii Biloshkurskyi' => 'serhiib@gmedinnovations.com' }
+  s.author           = { 'Serhii Biloshkurskyi' => 'biloshkurskyi.ss@gmail.com' }
   s.source           = { :git => 'https://github.com/sergVn/SectionDial.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
@@ -38,7 +38,5 @@ Customizable dial view for iOS. A view allows to show data with dial view. Suppo
   #   'SectionDial' => ['SectionDial/Assets/*.png']
   # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
