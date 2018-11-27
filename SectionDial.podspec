@@ -9,7 +9,8 @@
 Pod::Spec.new do |s|
   s.name             = 'SectionDial'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of SectionDial.'
+  s.summary          = 'Customizable dial view for iOS. '
+  s.swift_version    =  '4.2'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,17 +19,18 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+Customizable dial view for iOS. A view allows to show data with dial view. Support settings cell customization for better presentation.
+
                        DESC
 
   s.homepage         = 'https://github.com/sergVn/SectionDial'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  # s.screenshots    = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'sergVn' => 'serhiib@gmedinnovations.com' }
+  s.author           = { 'Serhii Biloshkurskyi' => 'serhiib@gmedinnovations.com' }
   s.source           = { :git => 'https://github.com/sergVn/SectionDial.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
 
   s.source_files = 'SectionDial/Classes/**/*'
   
@@ -37,6 +39,6 @@ TODO: Add long description of the pod here.
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+  s.frameworks = 'UIKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 end

@@ -1,6 +1,0 @@
-framework module Pods_SectionDial_Tests {
-  umbrella header "Pods-SectionDial_Tests-umbrella.h"
-
-  export *
-  module * { export * }
-}

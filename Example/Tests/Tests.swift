@@ -1,5 +1,5 @@
 import XCTest
-import SectionDial
+//import SectionDial
 
 class Tests: XCTestCase {
     
