@@ -1,0 +1,6 @@
+framework module SectionDial {
+  umbrella header "SectionDial-umbrella.h"
+
+  export *
+  module * { export * }
+}

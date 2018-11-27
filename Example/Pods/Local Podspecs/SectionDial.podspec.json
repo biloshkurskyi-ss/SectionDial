@@ -1,0 +1,22 @@
+{
+  "name": "SectionDial",
+  "version": "0.1.0",
+  "summary": "A short description of SectionDial.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/sergVn/SectionDial",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "sergVn": "serhiib@gmedinnovations.com"
+  },
+  "source": {
+    "git": "https://github.com/sergVn/SectionDial.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "SectionDial/Classes/**/*"
+}
