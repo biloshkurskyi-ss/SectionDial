@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SectionDial_Example' do
+  pod 'SectionDial', :path => '../'
+
+  target 'SectionDial_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase' , '~> 2.1.4'
+  end
+end
