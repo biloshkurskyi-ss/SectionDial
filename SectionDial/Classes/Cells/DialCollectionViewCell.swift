@@ -50,13 +50,13 @@ public class DialCollectionViewCell: UICollectionViewCell {
 
 extension DialCollectionViewCell {
     public struct Config {
-        var numberOfMarkers = 5
-        var generalMarkHeight = 6.0
-        var centralMarkHeight = 15.0
-        var markWidth = 2.0
-        var yPosition: MarkYPosition = .bottom
+        public var numberOfMarkers = 5
+        public var generalMarkHeight = 6.0
+        public var centralMarkHeight = 15.0
+        public var markWidth = 2.0
+        public var yPosition: MarkYPosition = .bottom
         
-        enum MarkYPosition {
+        public enum MarkYPosition {
             case top,
             bottom
         }

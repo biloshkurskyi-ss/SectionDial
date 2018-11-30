@@ -20,10 +20,12 @@ import UIKit
 public protocol SectionDialViewProtocol {
     
     var delegate: SectionDialViewDelegate? { get set }
+    var config: SectionDialView.Config { get set }
     var selectedIndex: Int { get }
     
     func setSelectedIndex(_ index: Int, withAnimation: Bool)
     func viewDidLayoutSubviews()
+    func reloadData()
     
-    init(frame: CGRect, delegate: SectionDialViewDelegate?, cellSize: CGSize?, markSize: CGSize?, cellConfiguration: DialCollectionViewCell.Config?)
+    init(frame: CGRect, delegate: SectionDialViewDelegate?, config: SectionDialView.Config?)
 }
