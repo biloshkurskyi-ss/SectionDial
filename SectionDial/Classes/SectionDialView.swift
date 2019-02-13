@@ -31,7 +31,7 @@ public class SectionDialView: UIView, SectionDialViewProtocol {
             if futureIndex != selectedIndex {
                 resetViewLayout()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        self.setSelectedIndex(self.futureIndex, withAnimation: true)
+                        self.setSelectedIndex(self.futureIndex, withAnimation: self.animated)
                 }
             }
         }
@@ -39,6 +39,7 @@ public class SectionDialView: UIView, SectionDialViewProtocol {
     
     public func setSelectedIndex(_ index: Int, withAnimation animated: Bool) {
         futureIndex = index
+        self.animated = animated
         collectionView.scrollToItem(at: IndexPath(row: index, section: 0) , at: .centeredHorizontally, animated: animated)
     }
     
@@ -81,6 +82,7 @@ public class SectionDialView: UIView, SectionDialViewProtocol {
     // MARK: - Private Variables
     private var collectionView: UICollectionView!
     private var futureIndex = -1
+    private var animated = false
     
     // MARK: - View Lifecycle
     override public func awakeFromNib() {
