@@ -22,25 +22,40 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view tag="1000" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJD-fS-60L" customClass="SectionDialView" customModule="SectionDial">
-                                <rect key="frame" x="16" y="28" width="343" height="60"/>
+                                <rect key="frame" x="16" y="28" width="343" height="53"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="4ez-Jq-FxY"/>
+                                    <constraint firstAttribute="height" constant="53" id="4ez-Jq-FxY"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="O2O-L9-MUB"/>
                                 </connections>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Iyi-27-9b4">
+                                <rect key="frame" x="16" y="447" width="343" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="OaR-95-0xy"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="nlY-OC-vPT"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="dnQ-IA-6xC"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Iyi-27-9b4" secondAttribute="bottom" constant="20" id="Bg3-Q5-Ags"/>
+                            <constraint firstItem="Iyi-27-9b4" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="XTC-CQ-beb"/>
                             <constraint firstItem="hJD-fS-60L" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="hNy-mb-aCl"/>
+                            <constraint firstItem="Iyi-27-9b4" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="t2c-CM-cFN"/>
                             <constraint firstItem="hJD-fS-60L" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="vx2-55-w0i"/>
                             <constraint firstItem="hJD-fS-60L" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="xvq-jR-oKs"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="dialView" destination="hJD-fS-60L" id="fTH-1a-WdL"/>
+                        <outlet property="tableView" destination="Iyi-27-9b4" id="veD-wl-CKY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

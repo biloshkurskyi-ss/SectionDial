@@ -14,7 +14,7 @@ public class DialCollectionViewCell: UICollectionViewCell {
     static let identifier = String(describing: DialCollectionViewCell.self)
     
     // MARK: - Instance Properties
-    open var config = Config()
+    open var config = DialCollectionViewCellSettings()
     
     // MARK: - Outlets
     @IBOutlet var label: UILabel!
@@ -45,21 +45,6 @@ public class DialCollectionViewCell: UICollectionViewCell {
     // MARK: - Instance Methods
     func setupTitle(_ title: String) {
         label.text = title
-    }
-}
-
-extension DialCollectionViewCell {
-    public struct Config {
-        public var numberOfMarkers = 5
-        public var generalMarkHeight = 6.0
-        public var centralMarkHeight = 15.0
-        public var markWidth = 2.0
-        public var yPosition: MarkYPosition = .bottom
-        
-        public enum MarkYPosition {
-            case top,
-            bottom
-        }
     }
 }
 

@@ -22,7 +22,7 @@ pod 'SectionDial'
 
 ## Author
 
-sergVn, serhiib@gmedinnovations.com
+Serhii Biloshkurskyi, biloshkurskyi.ss@gmail.com
 
 ## License
 

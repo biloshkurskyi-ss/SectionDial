@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-@IBDesignable public class SectionDialView: UIView, SectionDialViewProtocol {
+public class SectionDialView: UIView, SectionDialViewProtocol {
 
     // MARK: - DialViewProtocol
     @IBOutlet weak public var delegate: SectionDialViewDelegate?
-    public var config: SectionDialView.Config = Config() {
+    public var config: SectionDialViewSettings = SectionDialViewSettings() {
         didSet {
             if oldValue.cellSize != config.cellSize {
-                invalidateLayout()
+                resetViewLayout()
             }
         }
     }
@@ -26,14 +26,20 @@ import UIKit
         }
     }
     
-    public func setSelectedIndex(_ index: Int, withAnimation animated: Bool) {
-        if !firstSetup {
-            selectedIndex = index
-            firstSetupAnimated = animated
-            // wait for indentations set
-        } else {
-            collectionView.scrollToItem(at: IndexPath(row: index, section: 0) , at: .centeredHorizontally, animated: animated)
+    override public var bounds: CGRect {
+        didSet {
+            if futureIndex != selectedIndex {
+                resetViewLayout()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        self.setSelectedIndex(self.futureIndex, withAnimation: true)
+                }
+            }
         }
+    }
+    
+    public func setSelectedIndex(_ index: Int, withAnimation animated: Bool) {
+        futureIndex = index
+        collectionView.scrollToItem(at: IndexPath(row: index, section: 0) , at: .centeredHorizontally, animated: animated)
     }
     
     public func reloadData() {
@@ -41,11 +47,11 @@ import UIKit
     }
     
     public func viewDidLayoutSubviews() {
-        collectionView.collectionViewLayout.invalidateLayout()
+        resetViewLayout()
     }
     
     // MARK: - Constructors
-    required convenience public init(frame: CGRect, delegate: SectionDialViewDelegate? = nil, config: SectionDialView.Config? = nil) {
+    required convenience public init(frame: CGRect, delegate: SectionDialViewDelegate? = nil, config: SectionDialViewSettings? = nil) {
         self.init(frame: frame)
 
         if let delegate = delegate {
@@ -72,25 +78,9 @@ import UIKit
         initCollectionView()
     }
     
-    // MARK: - IBInspectable Variables
-    @IBInspectable var cellWidth: CGFloat {
-        set { config.cellSize.width = newValue
-            invalidateLayout()
-        }
-        get { return config.cellSize.width }
-    }
-    
-    @IBInspectable var cellHeight: CGFloat {
-        set { config.cellSize.height = newValue
-            invalidateLayout()
-        }
-        get { return config.cellSize.height }
-    }
-    
     // MARK: - Private Variables
     private var collectionView: UICollectionView!
-    private var firstSetup = false
-    private var firstSetupAnimated = false
+    private var futureIndex = -1
     
     // MARK: - View Lifecycle
     override public func awakeFromNib() {
@@ -118,32 +108,33 @@ import UIKit
     private func initCollectionView() {
         collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height),
                                           collectionViewLayout: UICollectionViewFlowLayout(cellSize: config.cellSize))
+        self.addSubview(collectionView)
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         
-        self.addSubview(collectionView)
-        
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        self.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor, constant: 0).isActive = true
-        self.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: 0).isActive = true
-        self.topAnchor.constraint(equalTo: collectionView.topAnchor, constant: 0 - (self.bounds.height - config.cellSize.height)).isActive = true
-        self.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 0).isActive = true
-
+        let views = ["collection": collectionView!]
+        let h = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[collection]-0-|", metrics: nil, views: views)
+        let w = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[collection]-0-|", metrics: nil, views: views)
+        NSLayoutConstraint.activate(h + w)
+        
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(UINib(nibName: String(describing: DialCollectionViewCell.self), bundle: Bundle(for: SectionDialView.self)), forCellWithReuseIdentifier: DialCollectionViewCell.identifier)
+        
+        setupViewLayout()
     }
     
-    private func invalidateLayout() {
+    private func resetViewLayout() {
         collectionView.collectionViewLayout.invalidateLayout()
+        setupViewLayout()
     }
     
-    @objc private func moveToStartIndex() {
-        if selectedIndex >= 0 {
-            setSelectedIndex(selectedIndex, withAnimation: firstSetupAnimated)
-        } else {
-            assert(false, "Incorrect move flow")
-        }
+    private func setupViewLayout() {
+        let insetValue = collectionView.frame.width / 2 - config.cellSize.width / 2
+        let inset = UIEdgeInsets(top: 0, left: insetValue, bottom: 0, right: insetValue)
+        
+        collectionView.collectionViewLayout = UICollectionViewFlowLayout(cellSize: config.cellSize, sectionInset: inset)
     }
 }
 
@@ -187,32 +178,5 @@ extension SectionDialView: UIScrollViewDelegate {
     }
 }
 
-// MARK: - UICollectionViewDelegateFlowLayout
-extension SectionDialView: UICollectionViewDelegateFlowLayout {
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let inset = collectionView.frame.width / 2 - config.cellSize.width / 2
-        if selectedIndex >= 0 && !firstSetup {
-            firstSetup = true
-            perform(#selector(moveToStartIndex), with: nil, afterDelay: 0.01)
-        }
-        return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
-    }
-}
-
-extension SectionDialView {
-    public struct Config {
-        public var cellSize = CGSize(width: 120, height: 60)
-        public var centerMarkSize = CGSize(width: 2, height: 20)
-        public var cellConfiguration: DialCollectionViewCell.Config? = nil
-    }
-}
-
-extension UICollectionViewFlowLayout {
-    convenience init(cellSize: CGSize) {
-        self.init()
-        
-        scrollDirection = .horizontal
-        itemSize = cellSize
-        minimumLineSpacing = 0
-    }
+extension SectionDialView: UICollectionViewDelegate {
 }

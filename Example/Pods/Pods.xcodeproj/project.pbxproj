@@ -12,6 +12,9 @@
 		53E9709092B2321B6E85B1BB7CF750CC /* Pods-SectionDial_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AC85EBCCB6E7CCDCE7CB06DB483CA8A /* Pods-SectionDial_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		59B1FA415A566339DD2C16ABBE352854 /* Pods-SectionDial_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D16C6C77D536BFE36940D9CD36945A /* Pods-SectionDial_Example-dummy.m */; };
 		72F1622351AD26EBA6CEC331584979D6 /* SectionDial-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B263BC77D37AB4B50F15588B67C84C8 /* SectionDial-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A5D1F2DB2214391E0040B1EE /* SectionDialViewSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1F2DA2214391E0040B1EE /* SectionDialViewSettings.swift */; };
+		A5D1F2DD2214393A0040B1EE /* UICollectionViewFlowLayoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1F2DC2214393A0040B1EE /* UICollectionViewFlowLayoutExtension.swift */; };
+		A5D1F2DF2214396C0040B1EE /* DialCollectionViewCellSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1F2DE2214396C0040B1EE /* DialCollectionViewCellSettings.swift */; };
 		BD88F5E406A0409BC6DF29C90ED6C335 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6DFF15000AFE2A371BF499E7AFDA808 /* Foundation.framework */; };
 		C5C7627321AD8D1A00B9E692 /* SectionDialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C7626E21AD8D1A00B9E692 /* SectionDialView.swift */; };
 		C5C7627421AD8D1A00B9E692 /* DialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C7627021AD8D1A00B9E692 /* DialCollectionViewCell.swift */; };
@@ -44,6 +47,9 @@
 		9C86E73D97DEA64D9198C454C013D132 /* Pods-SectionDial_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SectionDial_Example-resources.sh"; sourceTree = "<group>"; };
 		A3D16C6C77D536BFE36940D9CD36945A /* Pods-SectionDial_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SectionDial_Example-dummy.m"; sourceTree = "<group>"; };
 		A4C656D8893CD88305F6C69AE0CFFA74 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A5D1F2DA2214391E0040B1EE /* SectionDialViewSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionDialViewSettings.swift; sourceTree = "<group>"; };
+		A5D1F2DC2214393A0040B1EE /* UICollectionViewFlowLayoutExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewFlowLayoutExtension.swift; sourceTree = "<group>"; };
+		A5D1F2DE2214396C0040B1EE /* DialCollectionViewCellSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialCollectionViewCellSettings.swift; sourceTree = "<group>"; };
 		AACB58637AE77D97136EB5E3EE7F74D2 /* SectionDial.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SectionDial.xcconfig; sourceTree = "<group>"; };
 		B39D2F304E5893711442D4F97A6C5E1D /* Pods-SectionDial_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SectionDial_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		B847129FF450124F756D65BC8F62AEDF /* Pods-SectionDial_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SectionDial_Example-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -159,6 +165,23 @@
 			);
 			sourceTree = "<group>";
 		};
+		A5D1F2E0221439B80040B1EE /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A5D1F2DA2214391E0040B1EE /* SectionDialViewSettings.swift */,
+				A5D1F2DE2214396C0040B1EE /* DialCollectionViewCellSettings.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		A5D1F2E1221439C60040B1EE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A5D1F2DC2214393A0040B1EE /* UICollectionViewFlowLayoutExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +201,8 @@
 		C5C7626821AD8CC900B9E692 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A5D1F2E1221439C60040B1EE /* Extensions */,
+				A5D1F2E0221439B80040B1EE /* Settings */,
 				C5C7626F21AD8D1A00B9E692 /* Cells */,
 				C5C7627221AD8D1A00B9E692 /* DialViewProtocol.swift */,
 				C5C7626E21AD8D1A00B9E692 /* SectionDialView.swift */,
@@ -333,8 +358,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5D1F2DD2214393A0040B1EE /* UICollectionViewFlowLayoutExtension.swift in Sources */,
 				C5C7627621AD8D1A00B9E692 /* DialViewProtocol.swift in Sources */,
 				C5C7627321AD8D1A00B9E692 /* SectionDialView.swift in Sources */,
+				A5D1F2DF2214396C0040B1EE /* DialCollectionViewCellSettings.swift in Sources */,
+				A5D1F2DB2214391E0040B1EE /* SectionDialViewSettings.swift in Sources */,
 				4B40D660D5A5A7DFB08EA184E01503AC /* SectionDial-dummy.m in Sources */,
 				C5C7627421AD8D1A00B9E692 /* DialCollectionViewCell.swift in Sources */,
 			);
