@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SectionDial'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'Customizable dial view for iOS.'
   s.swift_version    = '4.2'
 
