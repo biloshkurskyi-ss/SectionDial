@@ -141,7 +141,7 @@ public class SectionDialView: UIView, SectionDialViewProtocol {
     }
     
     private func setupViewLayout() {
-        let insetValue = collectionView.frame.width / 2 - config.cellSize.width / 2
+        let insetValue = self.frame.width / 2 - config.cellSize.width / 2
         let inset = UIEdgeInsets(top: 0, left: insetValue, bottom: 0, right: insetValue)
                 
         collectionView.collectionViewLayout = UICollectionViewFlowLayout(cellSize: config.cellSize, sectionInset: inset)
