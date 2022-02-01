@@ -22,6 +22,9 @@ public class SectionDialView: UIView, SectionDialViewProtocol {
     }
     public var selectedIndex: Int = -1 {
         didSet {
+            if timer != nil{
+                stopTimer()
+            }
             delegate?.dialView(self, didSelectElementAt: selectedIndex)
         }
     }
@@ -31,7 +34,7 @@ public class SectionDialView: UIView, SectionDialViewProtocol {
             if futureIndex != selectedIndex {
                 resetViewLayout()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        self.setSelectedIndex(self.futureIndex, withAnimation: self.animated)
+                    self.setSelectedIndex(self.futureIndex, withAnimation: self.animated)
                 }
             }
         }
@@ -40,6 +43,11 @@ public class SectionDialView: UIView, SectionDialViewProtocol {
     public func setSelectedIndex(_ index: Int, withAnimation animated: Bool) {
         futureIndex = index
         self.animated = animated
+        
+        if isSelectedIndexPath == false && timer == nil  {
+            startTimer()
+        }
+        
         collectionView.scrollToItem(at: IndexPath(row: index, section: 0) , at: .centeredHorizontally, animated: animated)
     }
     
@@ -75,7 +83,6 @@ public class SectionDialView: UIView, SectionDialViewProtocol {
         super.init(coder: coder)
         
         backgroundColor = .clear
-
         initCollectionView()
     }
     
@@ -83,6 +90,7 @@ public class SectionDialView: UIView, SectionDialViewProtocol {
     private var collectionView: UICollectionView!
     private var futureIndex = -1
     private var animated = false
+    private var timer: Timer?
     
     // MARK: - View Lifecycle
     override public func awakeFromNib() {
@@ -135,8 +143,26 @@ public class SectionDialView: UIView, SectionDialViewProtocol {
     private func setupViewLayout() {
         let insetValue = collectionView.frame.width / 2 - config.cellSize.width / 2
         let inset = UIEdgeInsets(top: 0, left: insetValue, bottom: 0, right: insetValue)
-        
+                
         collectionView.collectionViewLayout = UICollectionViewFlowLayout(cellSize: config.cellSize, sectionInset: inset)
+    }
+    
+    private func stopTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    private func startTimer() {
+        guard timer == nil else { return }
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { [weak self] _ in
+            guard let strongSelf = self else { return }
+            
+            if strongSelf.isSelectedIndexPath {
+                strongSelf.stopTimer()
+            } else if strongSelf.collectionView.indexPathsForVisibleItems.map({ $0.row }).contains(strongSelf.futureIndex) {
+                strongSelf.selectedIndex = strongSelf.futureIndex
+            }
+        })
     }
 }
 
@@ -181,4 +207,10 @@ extension SectionDialView: UIScrollViewDelegate {
 }
 
 extension SectionDialView: UICollectionViewDelegate {
+}
+
+extension SectionDialView {
+    var isSelectedIndexPath: Bool {
+        return selectedIndex > 0
+    }
 }

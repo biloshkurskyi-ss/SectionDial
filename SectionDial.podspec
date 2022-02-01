@@ -8,9 +8,9 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SectionDial'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'Customizable dial view for iOS.'
-  s.swift_version    =  '4.2'
+  s.swift_version    = '4.2'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
