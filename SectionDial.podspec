@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SectionDial'
-  s.version          = '0.1.3'
+  s.version          = '0.1.4'
   s.summary          = 'Customizable dial view for iOS.'
   s.swift_version    = '4.2'
 
@@ -26,7 +26,7 @@ Customizable dial view for iOS. A view allows to show data with dial view. Suppo
   s.homepage         = 'https://github.com/sergVn/SectionDial'
   # s.screenshots    = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Serhii Biloshkurskyi' => 'biloshkurskyi.ss@gmail.com' }
+  s.author           = { 'Serhii Biloshkurskyi' => 'https://github.com/sergVn' }
   s.source           = { :git => 'https://github.com/sergVn/SectionDial.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
