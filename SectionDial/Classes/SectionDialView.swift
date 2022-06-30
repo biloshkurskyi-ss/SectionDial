@@ -22,6 +22,7 @@ public class SectionDialView: UIView, SectionDialViewProtocol {
     }
     public var selectedIndex: Int = -1 {
         didSet {
+            futureIndex = selectedIndex
             if timer != nil{
                 stopTimer()
             }
